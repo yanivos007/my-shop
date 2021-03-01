@@ -8,23 +8,31 @@ const productSchema = new Schema({
   },
   name: {
     type: String,
-    required: true,
+    required: [true, "Please include the product name"],
   },
   price: {
     type: Number,
-    required: true,
+    required: [true, "Please include the product price"],
   },
-  picture: {
+  imageUrl: {
     type: String,
     required: true,
   },
-  categoryId: {
-    type: Number,
-    required: true,
-  },
+  category: [
+    {
+      name: {
+        type: String,
+        required: [true, "Please include the product category name"],
+      },
+      id: {
+        type: Number,
+        required: [true, "Please include the product category id"],
+      },
+    },
+  ],
   description: {
     type: String,
-    required: true,
+    required: [true, "Please include the product description"],
   },
 });
 

@@ -1,5 +1,5 @@
 const Product = require("./productSchema");
-exports.products = async () => {
+exports.getProducts = async () => {
   //findAll
   const products = await Product.find();
   return products;
