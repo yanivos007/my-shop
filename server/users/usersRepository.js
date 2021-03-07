@@ -1,5 +1,7 @@
 const Users = require("./usersSchema");
-exports.users = async () => {
+const bcrypt = require('bcrypt');
+
+exports.getUsers = async () => {
   //findAll
   const users = await Users.find();
   return users;

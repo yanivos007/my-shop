@@ -1,4 +1,5 @@
 const Product = require("./productSchema");
+
 exports.getProducts = async () => {
   //findAll
   const products = await Product.find();
@@ -12,11 +13,10 @@ exports.productById = async (id) => {
 exports.createProduct = async (payload) => {
   //new product
   const newProduct = await Product.create(payload);
-  return products;
+  return newProduct;
 };
 exports.removeProduct = async (id) => {
   //delete product
   const product = await Product.findByIdAndRemove(payload);
   return product;
 };
-

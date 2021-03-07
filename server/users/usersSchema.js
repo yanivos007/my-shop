@@ -39,19 +39,19 @@ const usersSchema = new Schema({
     require: true,
     default: 'user'
   },
-  cart: {
-    items: [
-      {
-        productId: {
-          type: Schema.Types.ObjectId,
-          // referred to Product Model
-          ref: "Product",
-          required: true
-        },
-        quantity: { type: Number, required: true }
-      }
-    ]
-  }
+  // cart: {
+  //   items: [
+  //     {
+  //       productId: {
+  //         type: Schema.Types.ObjectId,
+  //         // referred to Product Model
+  //         ref: "Product",
+  //         required: true
+  //       },
+  //       quantity: { type: Number, required: true }
+  //     }
+  //   ]
+  // }
 });
 
 const Users = mongoose.model("Users", usersSchema);
