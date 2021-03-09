@@ -1,36 +1,31 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const router = express.Router();
-const usersSchema = require("./usersSchema");
+const IUser = require("./usersSchema");
 const userRepository = require("./usersRepository");
 
 router.post("/register", async (req, res) => {
-  const {
-    id,
-    email,
-    password,
-    verifyPassword,
-    firstName,
-    lastName,
-    city,
-    adress,
-  } = req.body;
-  let usersSchema = {};
-  usersSchema.id = id;
-  usersSchema.email = email;
-  usersSchema.password = password;
-  usersSchema.verifyPassword = verifyPassword;
-  usersSchema.firstName = firstName;
-  usersSchema.lastName = lastName;
-  usersSchema.city = city;
-  usersSchema.adress = adress;
-  res.json(usersSchema);
+  try {
+    const user = new IUser({
+      email: req.body.email,
+      password: req.body.password,
+      verifyPassword: req.body.verifyPassword,
+      firstName: req.body.firstName,
+      city: req.body.city,
+      adress: req.body.adress,
+      role: req.body.role,
+    });
+    const newUser = await user.save();
+    res.json(newUser);
+  } catch (err) {
+    console.log(err);
+  }
 });
 
 router.post("/login", async (req, res) => {
   try {
     const { userName, password } = req.body;
-    const user = await usersSchema.findOne({ userName });
+    const user = await userRepository.findOne({ userName });
     if (user) {
       res.status(200).send(user);
     } else {
@@ -44,6 +39,7 @@ router.post("/login", async (req, res) => {
 
 router.get("/", async (req, res) => {
   try {
+    console.log("im in users");
     const users = await userRepository.getUsers();
     res.status(200).json(users);
   } catch (err) {
@@ -52,7 +48,9 @@ router.get("/", async (req, res) => {
 });
 router.get("/get/:id", async (req, res) => {
   try {
-    const user = await userRepository.usersById({ Users: req.params.accountNumber });
+    const user = await userRepository.usersById({
+      Users: req.params.accountNumber,
+    });
     res.status(200).json(user);
   } catch {
     res

@@ -2,7 +2,7 @@ const apiRouter = require("express").Router();
 const productRepository = require("./products/productRepository");
 // const orderRepository = require("./order/orderRepository");
 // const cartRepository = require("./cart/cartRepository");
-// const userRepository = require("./users/userRepository");
+// const userRepository = require("./users/usersRepository");
 const multerInstance = require("./multer");
 apiRouter.post(
   "/",

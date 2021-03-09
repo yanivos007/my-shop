@@ -1,1 +1,23 @@
 <p>login works!</p>
+<div>
+  <form action="post">
+    <label for="email">אי-מייל</label>
+    <input type="text" #email required />
+    <br />
+    <label for="password">סיסמא</label>
+    <input type="text" #password required />
+    <br />
+
+    <button (click)="login()">התחבר</button>
+    <a href="login.component.html">עדיין לא רשום? לחץ כאן!</a>
+    <br />
+  </form>
+</div>
+<div>
+  <h1>usersList</h1>
+  <p *ngFor="let user of users">
+    {{ user.email }}
+    {{ user.firstName }}
+    {{ user.lastName }}
+  </p>
+</div>

@@ -1,5 +1,4 @@
-export interface User {
-  _id: number;
+export interface IUser {
   email: String;
   password: String;
   verifyPassword: String;
@@ -9,19 +8,19 @@ export interface User {
   adress: String;
   role: String;
 }
-export interface Product {
-  _id: Number;
+export interface IProduct {
+  _id: Object;
   name: String;
   price: Number;
   imageUrl: String;
-  category: Array<String>;
+  category: [{ name: String }, { id: Number }];
   description: String;
 }
-export interface Order {
+export interface IOrder {
   products: Array<String>;
   user: Array<String>;
 }
-export interface Cart {
+export interface ICart {
   _id: Number;
   userId: Number;
   date: String;

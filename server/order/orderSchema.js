@@ -1,26 +1,30 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 const orderSchema = new Schema({
-  products: [
-    {
-      // type: Object - you can specify full product of the document. (any object)
-      product: { type: Object, required: true },
-      quantity: { type: Number, required: true }
-    }
-  ],
-  user: {
-    name: {
-      type: String,
-      required: true
-    },
-    userId: {
-      type: Schema.Types.ObjectId,
-      ref: "User",
-      required: true
-    }
-  }
+  cartId:{
+    type: Number,
+    require: true
+  },
+  finalPrice:{
+    type:Number, 
+    require: true
+  },
+  userId: {
+    type: Number,
+    required: true,
+  },
+  orderDetails: [
+     {
+       city: {type: String, require :true},
+       adress: {type: String, require :true},
+       date: {type: Date, require :true},
+       dateToDeliver: {type: Date, require :true},
+       creditCard: {type: Number, require :true},
+       phoneNumber: {type: Number, require :true},
+     }
+  ]
 });
 
-const Order = mongoose.model("Order", orderSchema);
+const IOrder = mongoose.model("Order", orderSchema);
 
-module.exports = Order;
+module.exports = IOrder;

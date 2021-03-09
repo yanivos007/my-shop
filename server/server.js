@@ -3,16 +3,6 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const morgan = require("morgan");
 const mongoose = require("mongoose");
-
-const Schema = mongoose.Schema;
-
-const productSchema = new Schema({
-  name: {
-    type: String,
-    required: [true, "Please include the product name"],
-  },
-});
-
 const app = express();
 
 app.use(cors());

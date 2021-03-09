@@ -1,4 +1,4 @@
-import { LoginComponent } from './pages/order/login.component';
+import { LoginComponent } from './pages/login/components/login.component';
 import { RegisterComponent } from './pages/login/components/register/register.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
@@ -6,9 +6,9 @@ import { Routes, RouterModule } from '@angular/router';
 const routes: Routes = [
   {
     path: 'login',
-    // loadChildren: () =>
-    //   import('./pages/login/login.module').then((m) => m.LoginModule),
-    component: LoginComponent,
+    loadChildren: () =>
+      import('./pages/login/login.module').then((m) => m.LoginModule),
+    // component: LoginComponent,
   },
   {
     path: '',

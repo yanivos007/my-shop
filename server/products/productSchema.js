@@ -2,10 +2,6 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const productSchema = new Schema({
-  _id: {
-    type: Number,
-    required: true,
-  },
   name: {
     type: String,
     required: [true, "Please include the product name"],
@@ -18,24 +14,17 @@ const productSchema = new Schema({
     type: String,
     required: true,
   },
-  category: [
-    {
-      name: {
+  category: {
         type: String,
         required: [true, "Please include the product category name"],
-      },
-      id: {
-        type: Number,
-        required: [true, "Please include the product category id"],
-      },
     },
-  ],
+  
   description: {
     type: String,
     required: [true, "Please include the product description"],
   },
 });
 
-const Product = mongoose.model("products", productSchema);
+const IProduct = mongoose.model("products", productSchema);
 
-module.exports = Product;
+module.exports = IProduct;
