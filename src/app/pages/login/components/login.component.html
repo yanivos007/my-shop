@@ -1,4 +1,3 @@
-<p>login works!</p>
 <div>
   <form action="post">
     <label for="email">אי-מייל</label>
@@ -14,10 +13,9 @@
   </form>
 </div>
 <div>
-  <h1>usersList</h1>
-  <p *ngFor="let user of users">
-    {{ user.email }}
-    {{ user.firstName }}
-    {{ user.lastName }}
+  <p *ngFor="let u of user">
+    {{ u.email }}
+    {{ u.firstName }}
+    {{ u.lastName }}
   </p>
 </div>

@@ -27,7 +27,7 @@
         <input type="text" #lastName required />
         <br />
         <label for="city"> עיר </label>
-        <select name="city" id="city">
+        <select name="city" id="city"  [(ngModel)]='user.city'>
           <option value="haifa">חיפה</option>
           <option value="telAviv">תל אביב</option>
           <option value="Jerusalem">ירושלים</option>
@@ -41,7 +41,7 @@
         </select>
         <br />
         <label for="adress"> רחוב </label>
-        <input type="text" #adress required />
+        <input type="text" [(ngModel)]='user.adress' required />
         <br />
         <button (click)="register()">שלח</button>
       </form>

@@ -5,13 +5,15 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root',
 })
 export class MainService {
+   products: IProduct[] = []
   constructor(private http: HttpClient) {}
 
   public getProducts() {
     this.http
-      .get<IProduct>('http://localhost:8080/api/products')
+      .get<IProduct[]>('http://localhost:8080/api/products')
       .subscribe((data) => {
         console.log(data);
+        this.products = data
       });
   }
   public getUsers() {

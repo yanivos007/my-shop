@@ -1,3 +1,10 @@
 <h1>my shop</h1>
-<app-store></app-store>
-><!-- <router-outlet></router-outlet> -->
+<nav>
+  <ul>
+    <li><a [routerLink]="'/home'"> Home</a></li>
+    <li><a [routerLink]="'/login'"> Login</a></li>
+    <li><a [routerLink]="'/register'"> Register</a></li>
+  </ul>
+</nav>
+<!-- <app-store></app-store> -->
+<router-outlet></router-outlet>

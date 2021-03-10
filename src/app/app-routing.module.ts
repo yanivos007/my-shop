@@ -1,5 +1,3 @@
-import { LoginComponent } from './pages/login/components/login.component';
-import { RegisterComponent } from './pages/login/components/register/register.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
@@ -8,7 +6,11 @@ const routes: Routes = [
     path: 'login',
     loadChildren: () =>
       import('./pages/login/login.module').then((m) => m.LoginModule),
-    // component: LoginComponent,
+  },
+  {
+    path: 'home',
+    loadChildren: () =>
+      import('./pages/home/home.module').then((m) => m.HomeModule),
   },
   {
     path: '',
@@ -17,7 +19,8 @@ const routes: Routes = [
   },
   {
     path: 'register',
-    component: RegisterComponent,
+    loadChildren: () =>
+      import('./pages/register/register.module').then((m) => m.RegisterModule),
   },
 ];
 

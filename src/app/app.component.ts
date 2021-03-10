@@ -11,7 +11,7 @@ export class AppComponent {
   constructor(public service: MainService) {
     this.service.getProducts();
     // this.service.getOrders();
-    // this.service.getUsers();
+    this.service.getUsers();
     // this.service.getCarts();
   }
 }

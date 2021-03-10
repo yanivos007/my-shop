@@ -1,4 +1,4 @@
-import { HomeService } from './home.service';
+import { HomeService } from './../../pages/home/home.service';
 import { IProduct } from './../../interfaces';
 import { Component, OnInit } from '@angular/core';
 
