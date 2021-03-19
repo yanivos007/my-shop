@@ -10,7 +10,16 @@ export class HomeService {
   products: IProduct[] = [];
   constructor(private http: HttpClient) {}
 
-  getProducts() : Observable<IProduct[]>{
-    return this.http.get<IProduct[]>("http://localhost:8080/api/products")
+  getProducts(): Observable<IProduct[]> {
+    return this.http.get<IProduct[]>('http://localhost:8080/api/products');
   }
+  getStrategyGames(): Observable<IProduct[]> {
+    return this.http.get<IProduct[]>(
+      'http://localhost:8080/api/products/strategy'
+    );
+  }
+
+  // AddProducts(): Observable<IProduct[]> {
+  //   return this.http.get<IProduct[]>('http://localhost:8080/api/products/add');
+  // }
 }

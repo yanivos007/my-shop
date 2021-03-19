@@ -1,51 +1,60 @@
-<div>
-  <h1>הרשמה</h1>
-  <div>
-    <form action="post">
-      <label for="id"> תעודת זהות</label>
-      <input type="text" #id required />
-      <br />
-      <label for="email">אי-מייל</label>
-      <input type="text" #email required />
-      <br />
-      <label for="password">סיסמא</label>
-      <input type="text" #password required />
-      <br />
-      <label for="Verify Password">אימות סיסמא</label>
-      <input type="text" #verifyPassword required />
-      <br />
-      <button (click)="OnContinue()">המשך לשלב הבא</button>
-      <a href="login.component.html">כבר רשום? לחץ כאן!</a>
-      <br />
-    </form>
-    <div>
-      <form action="post">
-        <label for="firstName"> שם פרטי </label>
-        <input type="text" #firstName required />
-        <br />
-        <label for="lastName"> שם משפחה </label>
-        <input type="text" #lastName required />
-        <br />
-        <label for="city"> עיר </label>
-        <select name="city" id="city"  [(ngModel)]='user.city'>
-          <option value="haifa">חיפה</option>
-          <option value="telAviv">תל אביב</option>
-          <option value="Jerusalem">ירושלים</option>
-          <option value="nazeret">נצרת</option>
-          <option value="beerSheva">באר שבע</option>
-          <option value="ramatGan">רמת גן</option>
-          <option value="RishonLezion">ראשון לציון</option>
-          <option value="kiryatShmona">קריית שמונה</option>
-          <option value="eilat">אילת</option>
-          <option value="yesodAmahala">יסוד המעלה</option>
-        </select>
-        <br />
-        <label for="adress"> רחוב </label>
-        <input type="text" [(ngModel)]='user.adress' required />
-        <br />
-        <button (click)="register()">שלח</button>
-      </form>
-    </div>
+<h1>הרשמה</h1>
+<form [formGroup]="firstStep" *ngIf="!firstStepSubmitted">
+  <div class="form-group">
+    <h3>first step</h3>
+    <!-- {{ registerForm.value | json }} -->
+    <label for="id"> תעודת זהות</label>
+    <input type="text" formControlName="id" class="form-group" />
+    <br />
+    <label for="email">אי-מייל</label>
+    <input type="text" formControlName="email" />
+    <br />
+    <label for="password">סיסמא</label>
+    <input type="text" formControlName="password" class="form-group" required />
+    <br />
+    <label for="Verify Password">אימות סיסמא</label>
+    <input type="text" formControlName="verifyPassword" class="form-group" />
+    <br />
+
+    <button (click)="OnContinue()">המשך לשלב הבא</button>
+    <button (click)="dummyData1()">מילוי אוטומטי</button>
   </div>
+  <!-- <a ng>כבר רשום? לחץ כאן!</a> -->
+  <br />
+</form>
+<div *ngIf="firstStepSubmitted">
+  <form
+    [formGroup]="secondStep"
+    (ngSubmit)="onSubmit()"
+    ng-disabled="firstStepSubmitted"
+  >
+    <h3>second step</h3>
+    <label for="firstName"> שם פרטי </label>
+    <input type="text" formControlName="firstName" required />
+    <br />
+    <label for="lastName"> שם משפחה </label>
+    <input type="text" formControlName="lastName" required />
+    <br />
+    <label for="city"> עיר </label>
+    <select name="city" id="city" class="custom-select" formControlName="city">
+      <option value="haifa">חיפה</option>
+      <option value="telAviv">תל אביב</option>
+      <option value="Jerusalem">ירושלים</option>
+      <option value="nazeret">נצרת</option>
+      <option value="beerSheva">באר שבע</option>
+      <option value="ramatGan">רמת גן</option>
+      <option value="RishonLezion">ראשון לציון</option>
+      <option value="kiryatShmona">קריית שמונה</option>
+      <option value="eilat">אילת</option>
+      <option value="yesodAmahala">יסוד המעלה</option>
+    </select>
+    <br />
+    <label for="adress"> כתובת </label>
+    <input type="text" formControlName="adress" required />
+    <br />
+    <button type="button" (click)="dummyData2()">מילוי אוטומטי</button>
+
+    <input type="submit" />
+  </form>
 </div>
 <!-- <app-products>  </app-products> -->

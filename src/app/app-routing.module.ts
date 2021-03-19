@@ -1,3 +1,4 @@
+import { AdminComponent } from './pages/admin/admin/admin.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
@@ -21,6 +22,11 @@ const routes: Routes = [
     path: 'register',
     loadChildren: () =>
       import('./pages/register/register.module').then((m) => m.RegisterModule),
+  },
+  {
+    path: 'admin',
+    loadChildren: () =>
+      import('./pages/admin/admin/admin.module').then((m) => m.AdminModule),
   },
 ];
 

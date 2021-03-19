@@ -1,5 +1,6 @@
+import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
 import { ComponentsModule } from 'src/app/components/components.module';
 
@@ -13,7 +14,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes), ComponentsModule, FormsModule],
+  imports: [RouterModule.forChild(routes), ComponentsModule, FormsModule , ReactiveFormsModule , CommonModule],
   exports: [],
   declarations: [RegisterComponent],
   providers: [],

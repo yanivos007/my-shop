@@ -1,17 +1,38 @@
 <p>admin works!</p>
+<h1>הכנס מוצר חדש</h1>
+<form [formGroup]="addProduct" (ngSubmit)="onAdd()">
+  <label for="categoryName"> קטגוריה </label>
+  <select
+    name="categoryName"
+    id="categoryName"
+    class="custom-select"
+    formControlName="categoryName"
+  >
+    <option value="startegy">אסטרטגיה וחשיבה</option>
+    <option value="cards">קלפים</option>
+    <option value="family">לכל המשפחה</option>
+    <option value="favorites">מומלצים</option>
+  </select>
+  <br />
+  <label for="name"> שם המשחק</label>
+  <input type="text" name="name" formControlName="name" required />
+  <br />
+  <label for="imageUrl"> תמונה </label>
+  <input type="image" name="imageUrl" formControlName="imageUrl" />
+  <br />
+  <label for="price"> מחיר </label>
 
-<h1> insert new Product</h1>
-<form>
-    <label for="category"> <input type="text" name="category" required> category </label>
-    <br>
-    <label for="name"> <input type="text" name="name" required> name </label>
-    <br>
-    <label for="imageUrl"> <input type="image" name="imageUrl" required> imageUrl </label>
-    <br>
-    <label for="price"> <input type="text" name="price" required> price </label>
-    <br>
-    <label for="description"> <input type="text" name="description" required> description </label>
-    <br>
-    <button (click)="onAdd()"> Add </button>
+  <input type="text" name="price" formControlName="price" required />
+  <br />
+  <label for="description"> תיאור המשחק </label>
+
+  <input
+    type="text"
+    name="description"
+    formControlName="description"
+    required
+  />
+  <br />
+  <input type="submit" />
+  <button type="button" (click)="dummyData()">מילוי אוטומטי</button>
 </form>
-

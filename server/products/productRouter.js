@@ -4,13 +4,13 @@ const router = express.Router();
 const productRepository = require("./productRepository");
 const IProduct = require("./productSchema");
 
-router.post("/", async (req, res) => {
+router.post("/add", async (req, res) => {
   try {
     const product = new IProduct({
       name: req.body.name,
       price: req.body.price,
       imageUrl: req.body.imageUrl,
-      category: req.body.category,
+      categoryName: req.body.categoryName,
       description: req.body.description,
     });
     const myProduct = await product.save();

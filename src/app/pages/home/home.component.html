@@ -1,6 +1,23 @@
-<p>store works!</p>
-<app-store></app-store>
-<div *ngFor="let p of mainService.products">
-  <div>{{ p.name }}</div>
-  <div>{{ p.price }}</div>
+<div>
+  <button type="button" (click)="showStrategy()">אסטרטגיה</button>
+  <button type="button" (click)="showFamily()">לכל המשפחה</button>
+  <button type="button" (click)="showCards()">קלפים</button>
+  <button type="button" (click)="showFavorites()">חשיבה</button>
+</div>
+
+<div class="productContainer">
+  <div
+    class="card rounded shadow-sm border-0"
+    *ngFor="let p of mainService.products"
+  >
+    <div class="card-body p-4">
+      <h2 class="card-body bg-light text-center">{{ p.name }}</h2>
+      <div>
+        <img src="{{ p.imageUrl }}" class="img-fluid d-block mx-auto mb-3" />
+      </div>
+      <p class="medium text-muted font-italic">{{ p.description }}</p>
+      <h3>{{ p.price }} ₪</h3>
+      <button (click)="AddToCart()">הוסף לעגלה</button>
+    </div>
+  </div>
 </div>

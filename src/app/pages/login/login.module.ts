@@ -1,10 +1,11 @@
-import { Component } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+// import { Component } from '@angular/core';
 // import { LoginComponent } from './../order/login.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { ComponentsModule } from 'src/app/components/components.module';
 
-import { RegisterComponent } from '../register/register.component';
+// import { RegisterComponent } from '../register/register.component';
 import { LoginComponent } from './components/login.component';
 import { CommonModule } from '@angular/common';
 
@@ -17,7 +18,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes), CommonModule, ComponentsModule],
+  imports: [RouterModule.forChild(routes), CommonModule, ComponentsModule ,FormsModule , ReactiveFormsModule],
   exports: [],
   declarations: [LoginComponent],
   providers: [],

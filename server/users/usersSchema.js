@@ -1,24 +1,21 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 const usersSchema = new Schema({
-  _id: {
-    type: Number,
-    required: true,
-  },
   email: {
     type: String,
     required: true,
+    minlength: 8,
+    trim: true,
+    unique: true,
   },
   password: {
-    type: Number,
-    required: true,
-  },
-  verifyPassword: {
     type: String,
     required: true,
+    trim: true,
   },
+
   firstName: {
-    type: Number,
+    type: String,
     required: true,
   },
   lastName: {
@@ -35,10 +32,21 @@ const usersSchema = new Schema({
   },
   role: {
     type: String,
-    enum: ['user', 'admin'],
-    require: true,
-    default: 'user'
+    enum: ["user", "admin"],
+    default: "user",
   },
+  // sessions: [
+  //   {
+  //     token: {
+  //       require: true,
+  //       type: String,
+  //     },
+  //     expireDate: {
+  //       type: Number,
+  //       require: true,
+  //     },
+  //   },
+  // ],
   // cart: {
   //   items: [
   //     {

@@ -11,6 +11,7 @@ apiRouter.post(
 );
 apiRouter.use("/users", require("./users/usersRouter"));
 apiRouter.use("/products", require("./products/productRouter"));
+// apiRouter.use("/admin", require("./"))
 apiRouter.use("/cart", require("./cart/cartRouter"));
 apiRouter.use("/order", require("./order/orderRouter"));
 

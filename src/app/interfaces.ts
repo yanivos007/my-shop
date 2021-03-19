@@ -7,13 +7,19 @@ export interface IUser {
   city: String;
   adress: String;
   role: String;
+  id: String;
+}
+export interface ICurrentUser {
+  email: String;
+  passWord: String;
 }
 export interface IProduct {
   _id: Object;
   name: String;
   price: Number;
   imageUrl: String;
-  category: [{ name: String }, { id: Number }];
+  categoryName: String;
+  categoryId: Number;
   description: String;
 }
 export interface IOrder {

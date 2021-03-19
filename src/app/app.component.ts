@@ -8,7 +8,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'my-shop';
-  constructor(public service: MainService) {
+  constructor(
+    public service: MainService,        
+    ) {
     this.service.getProducts();
     // this.service.getOrders();
     this.service.getUsers();

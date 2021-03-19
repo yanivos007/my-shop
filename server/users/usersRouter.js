@@ -3,19 +3,22 @@ const mongoose = require("mongoose");
 const router = express.Router();
 const IUser = require("./usersSchema");
 const userRepository = require("./usersRepository");
+const bcrypt = require("bcrypt");
 
 router.post("/register", async (req, res) => {
   try {
+    const hash = bcrypt.hashSync(req.body.password, 10);
     const user = new IUser({
       email: req.body.email,
-      password: req.body.password,
-      verifyPassword: req.body.verifyPassword,
+      password: hash,
       firstName: req.body.firstName,
+      lastName: req.body.lastName,
       city: req.body.city,
       adress: req.body.adress,
       role: req.body.role,
     });
     const newUser = await user.save();
+    delete newUser.password;
     res.json(newUser);
   } catch (err) {
     console.log(err);
