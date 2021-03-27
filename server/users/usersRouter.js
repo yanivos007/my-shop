@@ -4,6 +4,8 @@ const router = express.Router();
 const IUser = require("./usersSchema");
 const userRepository = require("./usersRepository");
 const bcrypt = require("bcrypt");
+var cookieParser = require("cookie-parser");
+var session = require("express-session");
 
 router.post("/register", async (req, res) => {
   try {
@@ -26,23 +28,35 @@ router.post("/register", async (req, res) => {
 });
 
 router.post("/login", async (req, res) => {
+  
+  const { email, password } = req.body;
+  const user = await userRepository.findOne(email);
+  if (!user) {
+    res.status(500).send("cannot find user");
+  }
   try {
-    const { userName, password } = req.body;
-    const user = await userRepository.findOne({ userName });
-    if (user) {
-      res.status(200).send(user);
+    if (await bcrypt.compare(password, req.body.password)) {
+      res.send("were good!");
+      console.log("were good");
+      if (!req.session.password) {
+        res.cookie('email', req.body.email)
+        res.status(200).json(user);
+        res.redirect("/home");
+      } else {
+
+      }
     } else {
-      res.status(500).send({ error });
+      res.send("were bad");
+      console.log("were bad");
     }
-  } catch (err) {
-    console.log(err);
+  } catch {
+    res.status(200).send(user);
   }
 });
 // && bcrypt.compareSynce(password, user.hash)
 
 router.get("/", async (req, res) => {
   try {
-    console.log("im in users");
     const users = await userRepository.getUsers();
     res.status(200).json(users);
   } catch (err) {
@@ -54,7 +68,10 @@ router.get("/get/:id", async (req, res) => {
     const user = await userRepository.usersById({
       Users: req.params.accountNumber,
     });
-    res.status(200).json(user);
+    if (req.session.password) {
+      res.status(200).json(user);
+      res.redirect("/home");
+    }
   } catch {
     res
       .status(400)

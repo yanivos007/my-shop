@@ -1,3 +1,5 @@
+import { AuthenticationService } from './../../../services/authentication.service';
+// import { authenticationService } from './../../../components/autentication/authentication.service';
 import { LoginServiceService } from './../login-service.service';
 import { IUser } from './../../../interfaces';
 // import { LoginComponent } from './../../../order/login.component';
@@ -17,32 +19,33 @@ import { ActivatedRoute, Router } from '@angular/router';
   providers: [LoginServiceService],
 })
 export class LoginComponent implements OnInit {
-  // user: IUser[] = [];
+  user: IUser[] = [];
   loginForm = new FormGroup({
     email: new FormControl(null, Validators.required),
     password: new FormControl(null, Validators.required),
   });
-  loading = false;
-  submitted = false;
+  loggedIn = false;
 
   constructor(
     private loginService: LoginServiceService,
-    private formBuilder: FormBuilder,
-    private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private authenticationService: AuthenticationService
   ) {}
 
   ngOnInit(): void {
     // this.loginService.getUsers().subscribe((u) => (this.user = u));
-  
   }
   get f() {
     return this.loginForm.controls;
   }
 
   onSubmit() {
-    this.submitted = true;
-    this.loading = true;
+    if (this.loginForm.invalid) {
+      return;
+    } else {
+      this.loggedIn = true;
+      console.log('on submit');
+      localStorage.setItem('submitted', 'true');
+    }
   }
-
 }

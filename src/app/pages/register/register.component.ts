@@ -24,15 +24,12 @@ export class RegisterComponent implements OnInit {
     city: new FormControl(null, Validators.required),
     firstName: new FormControl(null, Validators.required),
     lastName: new FormControl(null, Validators.required),
-    
-
   });
 
   constructor(
     private router: Router,
     private userService: LoginServiceService
-  ) {
-  }
+  ) {}
 
   ngOnInit() {}
 
@@ -42,7 +39,7 @@ export class RegisterComponent implements OnInit {
   }
   onSubmit() {
     const newUser = { ...this.firstStep.value, ...this.secondStep.value };
-    console.log('on submit ');
+    console.log('user added ');
     this.userService.register(newUser).subscribe();
   }
 

@@ -1,0 +1,11 @@
+.cart {
+  border: black solid 1px;
+  max-width: 300px;
+  height: auto;
+  position: fixed;
+}
+.btn {
+  position: absolute;
+  left: 100px;
+  top: 200px;
+}

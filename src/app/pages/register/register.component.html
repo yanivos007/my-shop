@@ -16,7 +16,9 @@
     <input type="text" formControlName="verifyPassword" class="form-group" />
     <br />
 
-    <button (click)="OnContinue()">המשך לשלב הבא</button>
+    <button (click)="OnContinue()" [disabled]="firstStep.invalid">
+      המשך לשלב הבא
+    </button>
     <button (click)="dummyData1()">מילוי אוטומטי</button>
   </div>
   <!-- <a ng>כבר רשום? לחץ כאן!</a> -->

@@ -4,10 +4,17 @@ const cors = require("cors");
 const morgan = require("morgan");
 const mongoose = require("mongoose");
 const app = express();
+var cookieParser = require('cookie-parser');
+var session = require('express-session');
+
 
 app.use(cors());
 app.use(morgan("tiny"));
 app.use(bodyParser.json());
+app.use(cookieParser())
+app.use(session({secret: "Shh, its a secret!" 
+,name:'sessionName'
+,saveUninitialized:false}));
 
 app.use("/api", require("./apiRouter"));
 
