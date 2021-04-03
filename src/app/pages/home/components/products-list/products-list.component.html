@@ -5,7 +5,7 @@
     <button type="button" (click)="showCards()">קלפים</button>
     <button type="button" (click)="showFavorites()">מועדפים</button>
   </div>
-  <div class="container" *ngFor="let p of products$ | async">
+  <div class="container" *ngFor="let i = index; let p; of: products$ | async">
     <div class="card-body p-4">
       <h1 class="card-body bg-light text-center">{{ p.name }}</h1>
       <h3>{{ p.categoryName }}</h3>
@@ -14,7 +14,7 @@
       </div>
       <p class="medium text-muted font-italic">{{ p.description }}</p>
       <h3>₪ {{ p.price }}</h3>
-      <button (click)="AddToCart($event)" id="{{ p.name }}">הוסף לעגלה</button>
+      <button (click)="AddToCart()" id="{{ p._id }}">פרטים נוספים וקניה</button>
     </div>
   </div>
 </div>

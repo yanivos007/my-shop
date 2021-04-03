@@ -23,13 +23,13 @@ export class MainService {
         console.log(data);
       });
   }
-  // public getCarts() {
-  //   this.http
-  //     .get<ICart>('http://localhost:8080/api/carts')
-  //     .subscribe((data) => {
-  //       console.log(data);
-  //     });
-  // }
+  public getCarts() {
+    this.http
+      .get<ICart>('http://localhost:8080/api/carts')
+      .subscribe((data) => {
+        console.log(data);
+      });
+  }
   // public getOrders() {
   //   this.http
   //     .get<IOrder>('http://localhost:8080/api/orders')

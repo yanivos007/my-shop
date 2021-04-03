@@ -14,10 +14,10 @@ const productSchema = new Schema({
     required: true,
   },
   categoryName: {
-        type: String,
-        required: [true, "Please include the product category name"],
-    },
-  
+    type: String,
+    required: [true, "Please include the product category name"],
+  },
+
   description: {
     type: String,
     required: [true, "Please include the product description"],

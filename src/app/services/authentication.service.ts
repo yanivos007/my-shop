@@ -5,6 +5,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 @Injectable({ providedIn: 'root' })
+
 export class AuthenticationService {
   public currentUser$ = new BehaviorSubject<IUser | null>(null);
   constructor(private http: HttpClient) {

@@ -44,6 +44,7 @@ export class LoginComponent implements OnInit {
       return;
     } else {
       this.loggedIn = true;
+      // this.authenticationService.login(email, password);
       console.log('on submit');
       localStorage.setItem('submitted', 'true');
     }

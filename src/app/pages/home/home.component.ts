@@ -6,6 +6,7 @@ import { IProduct } from '../../interfaces';
 import { Component, Input, OnInit, Output } from '@angular/core';
 // import { map, filter } from 'rxjs/operators';
 import { Observable } from 'rxjs';
+import Swal from 'sweetalert2'
 
 @Component({
   selector: 'app-home',

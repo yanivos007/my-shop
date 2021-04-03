@@ -1,14 +1,17 @@
-<div class="cart">
-  <h1>העגלה שלי</h1>
+<h1>העגלה שלי</h1>
+<div class="alert alert-info" *ngIf="cartItems.length === 0">
+  no item added yet
+</div>
+<div class="cart" *ngIf="cartItems.length > 0">
   <div>
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam praesentium
-    nemo, officia fugit omnis, quam consectetur unde, iure esse quis temporibus
-    facilis ea iste suscipit quo neque fuga sed molestiae.
-    <div *ngFor="let item of cart">
-      <p>{{ item.userId }}</p>
-      <p>{{ item.cartProduct.constructor.name }}</p>
-      <p>{{ item.userId }}</p>
+    <!-- <app-products></app-products> -->
+    <div *ngFor="let item of cartItems" class="cartItem">
+      <!-- <li>id: {{ item.id }}</li>
+      <li>price: {{ item.price }}</li>
+      <li>qnt: {{ item.quantity }}</li> -->
     </div>
-    <button class="btn" (click)="continue()">המשך להזמנה</button>
+    <span>סכום כולל: {{ totalPrice }}</span>
+    <br />
+    <button class="btn btn-primary" (click)="continue()">המשך להזמנה</button>
   </div>
 </div>

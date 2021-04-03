@@ -9,6 +9,10 @@ export interface IUser {
   role: String;
   id: String;
 }
+export interface User {
+  email: string;
+  password: string;
+}
 export interface ICurrentUser {
   email: String;
   passWord: String;

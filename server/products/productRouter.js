@@ -1,5 +1,4 @@
 const express = require("express");
-// const mongoose = require("mongoose");
 const router = express.Router();
 const productRepository = require("./productRepository");
 const IProduct = require("./productSchema");
@@ -42,6 +41,7 @@ router.get("/:productId", async (req, res) => {
       .json({ err: "not getting into get user by id at usersRouter" });
   }
 });
+
 router.delete("/:productId", async (req, res) => {
   try {
     const deleteProduct = await productRepository.removeProduct({

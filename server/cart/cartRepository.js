@@ -1,21 +1,22 @@
-const Cart = require("./cartSchema");
-exports.getCarts = async () => {
+const ICart = require("./cartSchema");
+
+exports.getCart = async () => {
   //findAll
-  const carts = await Cart.find();
+  const carts = await ICart.find();
   return carts;
 };
 exports.cartById = async (id) => {
   //find by id
-  const product = await Cart.findById(id);
-  return product;
+  const cart = await ICart.findById(id);
+  return cart;
 };
 exports.createCart = async (payload) => {
   //new product
-  const newCart = await Cart.create(payload);
+  const newCart = await ICart.create(payload);
   return newCart;
 };
 exports.removeCart = async (id) => {
   //delete product
-  const carts = await Cart.findByIdAndRemove(id);
+  const carts = await ICart.findByIdAndRemove(id);
   return carts;
 };

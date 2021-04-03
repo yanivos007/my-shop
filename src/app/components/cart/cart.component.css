@@ -1,11 +1,19 @@
 .cart {
   border: black solid 1px;
-  max-width: 300px;
+  width: 200px;
   height: auto;
-  position: fixed;
+  overflow: scroll;
+  position: absolute;
+}
+.cartItem {
+  border: blue 2px solid;
+  padding: 3px;
+  border-radius: 10px;
+  justify-content: space-around;
+  margin-top: 5px;
 }
 .btn {
-  position: absolute;
-  left: 100px;
-  top: 200px;
+  /* position: absolute;
+  left: 130px;
+  top: 180px; */
 }

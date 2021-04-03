@@ -1,11 +1,9 @@
 const express = require("express");
-const mongoose = require("mongoose");
 const router = express.Router();
 const IUser = require("./usersSchema");
 const userRepository = require("./usersRepository");
 const bcrypt = require("bcrypt");
-var cookieParser = require("cookie-parser");
-var session = require("express-session");
+const session = require("express-session");
 
 router.post("/register", async (req, res) => {
   try {
@@ -28,7 +26,6 @@ router.post("/register", async (req, res) => {
 });
 
 router.post("/login", async (req, res) => {
-  
   const { email, password } = req.body;
   const user = await userRepository.findOne(email);
   if (!user) {
@@ -36,14 +33,14 @@ router.post("/login", async (req, res) => {
   }
   try {
     if (await bcrypt.compare(password, req.body.password)) {
-      res.send("were good!");
+      // res.send("were good!");
       console.log("were good");
-      if (!req.session.password) {
-        res.cookie('email', req.body.email)
+      if (req.session.password) {
+        res.cookie("email", req.body.email);
         res.status(200).json(user);
         res.redirect("/home");
       } else {
-
+        console.log("no req.session.password");
       }
     } else {
       res.send("were bad");

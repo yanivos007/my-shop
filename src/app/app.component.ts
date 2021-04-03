@@ -8,11 +8,18 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'my-shop';
-  constructor(
-    public service: MainService,        
-    ) {
-    // this.service.getOrders();
-    this.service.getUsers();
-    // this.service.getCarts();
+  constructor(public service: MainService) {
+// productsList =[
+//   {name: 'Z900', price: 8799},
+//   {name: 'shubert helmet', price: 999},
+//   {name: 'sport gloves', price: 99}
+// ]
+   
+// cartProductsList = [];
+ this.service.getUsers();
+    this.service.getCarts();
+  }
+  logout() {
+    console.log('logout Button');
   }
 }

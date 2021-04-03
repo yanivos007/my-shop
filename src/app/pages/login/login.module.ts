@@ -1,3 +1,4 @@
+import { AuthenticationService } from './../../services/authentication.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 // import { Component } from '@angular/core';
 // import { LoginComponent } from './../order/login.component';
@@ -14,11 +15,17 @@ const routes: Routes = [
     path: '',
     component: LoginComponent,
   },
-  
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes), CommonModule, ComponentsModule ,FormsModule , ReactiveFormsModule],
+  imports: [
+    RouterModule.forChild(routes),
+    CommonModule,
+    ComponentsModule,
+    FormsModule,
+    ReactiveFormsModule,
+    // AuthenticationService,
+  ],
   exports: [],
   declarations: [LoginComponent],
   providers: [],
