@@ -33,6 +33,10 @@ export interface IOrder {
 export interface ICart {
   _id: Number;
   userId: Number;
-  date: String;
-  cartProduct: Object;
+  product: {
+    productId: String;
+    quantity: Number;
+    price: Number;
+  };
+  modifiedOn: Date;
 }

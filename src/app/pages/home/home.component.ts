@@ -1,12 +1,4 @@
-import { IUser } from './../../interfaces';
-import { HttpClient } from '@angular/common/http';
-import { MainService } from './../../services/mainService';
-import { HomeService } from './home.service';
-import { IProduct } from '../../interfaces';
-import { Component, Input, OnInit, Output } from '@angular/core';
-// import { map, filter } from 'rxjs/operators';
-import { Observable } from 'rxjs';
-import Swal from 'sweetalert2'
+import { Component,  OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-home',
@@ -15,7 +7,7 @@ import Swal from 'sweetalert2'
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private homeService: HomeService, public http: HttpClient) {}
+  constructor() {}
 
   ngOnInit() {}
   

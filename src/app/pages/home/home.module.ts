@@ -1,4 +1,3 @@
-import { PopUpComponent } from './components/pop-up/pop-up.component';
 import { ComponentsModule } from 'src/app/components/components.module';
 import { RouterModule, Routes } from '@angular/router';
 import { CommonModule } from '@angular/common';
@@ -17,7 +16,7 @@ const routes: Routes = [
 @NgModule({
   imports: [RouterModule.forChild(routes), CommonModule, ComponentsModule],
   exports: [],
-  declarations: [HomeComponent, PopUpComponent, ProductsListComponent],
+  declarations: [HomeComponent, ProductsListComponent],
   providers: [],
 })
 export class HomeModule {}

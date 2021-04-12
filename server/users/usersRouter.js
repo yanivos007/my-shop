@@ -1,4 +1,6 @@
 const express = require("express");
+var cookieSession = require("cookie-session");
+
 const router = express.Router();
 const IUser = require("./usersSchema");
 const userRepository = require("./usersRepository");
@@ -27,27 +29,25 @@ router.post("/register", async (req, res) => {
 
 router.post("/login", async (req, res) => {
   const { email, password } = req.body;
-  const user = await userRepository.findOne(email);
+  const user = await userRepository.usersByEmail(email);
+  console.log(user + "user");
   if (!user) {
     res.status(500).send("cannot find user");
   }
   try {
-    if (await bcrypt.compare(password, req.body.password)) {
-      // res.send("were good!");
-      console.log("were good");
-      if (req.session.password) {
-        res.cookie("email", req.body.email);
-        res.status(200).json(user);
-        res.redirect("/home");
-      } else {
-        console.log("no req.session.password");
-      }
+    const hash = await userRepository.hashPassword(email);
+    console.log("hash" + hash);
+    if (await bcrypt.compare(password, hash)) {
+      req.session.email = email;
+      console.log(session);
+      const sessionUser = remove(user, ["password"]);
+      console.log("sessionUser" + sessionUser);
     } else {
       res.send("were bad");
       console.log("were bad");
     }
   } catch {
-    res.status(200).send(user);
+    res.status(500).send("not getting any user");
   }
 });
 // && bcrypt.compareSynce(password, user.hash)

@@ -1,11 +1,10 @@
 import { IUser } from './../interfaces';
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 @Injectable({ providedIn: 'root' })
-
 export class AuthenticationService {
   public currentUser$ = new BehaviorSubject<IUser | null>(null);
   constructor(private http: HttpClient) {
@@ -14,13 +13,13 @@ export class AuthenticationService {
       this.currentUser$.next(JSON.parse(user));
     }
   }
+  //   public get currentUserValue(): IUser {
+  //     return this.currentUser$.value;
+  // }
 
   login(email: string, password: string) {
     return this.http
-      .post<any>(`http://localhost:8080/users/login`, {
-        email,
-        password,
-      })
+      .post<any>(`http://localhost:8080/api/users/login`, { email, password })
       .pipe(
         map((user) => {
           // store user details and basic auth credentials in local storage to keep user logged in between page refreshes
@@ -35,5 +34,15 @@ export class AuthenticationService {
     // remove user from local storage to log user out
     localStorage.removeItem('currentUser');
     this.currentUser$.next(null);
+  }
+  registerUser(user: object): Observable<IUser> {
+    let headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+    });
+    return this.http.post<IUser>(
+      `http://localhost:8080/api/user/register`,
+      user,
+      { headers: headers }
+    );
   }
 }

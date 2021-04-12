@@ -1,24 +1,27 @@
 const express = require("express");
+const app = express();
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const morgan = require("morgan");
 const mongoose = require("mongoose");
-const app = express();
 var cookieParser = require("cookie-parser");
 var session = require("express-session");
+const { urlencoded } = require("body-parser");
 
 app.use(cors());
 app.use(morgan("tiny"));
+app.use(bodyParser.urlencoded({ extended: true }));
+
 app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(
   session({
-    secret: "Shh, its a secret!",
-    name: "sessionName",
-    saveUninitialized: false,
+    secret: "23hnv0vno4t0nvnwg4",
+    resave: false,
+    saveUninitialized: true,
+    cookie: { secure: true, maxAge: 60000 },
   })
 );
-
 app.use("/api", require("./apiRouter"));
 
 const URI = `mongodb+srv://userDB:userDB@yaniv.hssax.mongodb.net/myShop?retryWrites=true&w=majority`;

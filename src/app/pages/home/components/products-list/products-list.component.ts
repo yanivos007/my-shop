@@ -1,3 +1,5 @@
+import { CartService } from './../../../../components/cart/cart.service';
+// import { CartService } from './../../../../services/cart.service';
 import { IUser, ICart, IProduct } from './../../../../interfaces';
 import { HttpClient } from '@angular/common/http';
 import { HomeService } from './../../home.service';
@@ -15,8 +17,8 @@ export class ProductsListComponent implements OnInit {
   products$: Observable<IProduct[]> = this.HomeService.getProducts();
   cart$: Observable<ICart[]> = this.HomeService.getCart();
   // @Input products: IProduct[]= []
-  user: IUser[] = [];
-  cart: ICart[] = [];
+  // user: IUser[] = [];
+  // cart: ICart[] = [];
 
   constructor(private HomeService: HomeService, public http: HttpClient) {}
 
@@ -34,10 +36,11 @@ export class ProductsListComponent implements OnInit {
   showFavorites() {
     this.products$ = this.HomeService.getFavoritesGames();
   }
-  addOne() {
+  increment() {
+    // this.CartService.addToCart()
     console.log('one added');
   }
-  cancleOne() {
+  decrement() {
     console.log('one cancled');
   }
   AddToCart() {
@@ -46,7 +49,6 @@ export class ProductsListComponent implements OnInit {
     // const newCart = { ...this.user, chosenProduct };
     Swal.fire({
       title: 'פרטים נוספים',
-      icon: 'info',
       showCancelButton: true,
       imageUrl: '',
       // imageWidth: 400,
@@ -55,9 +57,9 @@ export class ProductsListComponent implements OnInit {
       cancelButtonText: '-1',
     }).then((result) => {
       if (result.value) {
-        this.addOne();
+        this.increment();
       } else if (result.dismiss === Swal.DismissReason.cancel) {
-        this.cancleOne();
+        this.decrement();
       }
     });
   }

@@ -18,6 +18,7 @@ export class RegisterComponent implements OnInit {
     id: new FormControl(null, Validators.required),
     email: new FormControl(null, Validators.email),
     password: new FormControl(null, Validators.required),
+    verifyPassword: new FormControl(null, Validators.required),
   });
   secondStep = new FormGroup({
     adress: new FormControl(null, Validators.required),
@@ -41,6 +42,7 @@ export class RegisterComponent implements OnInit {
     const newUser = { ...this.firstStep.value, ...this.secondStep.value };
     console.log('user added ');
     this.userService.register(newUser).subscribe();
+    this.router.navigate(['/login']);
   }
 
   dummyData1() {
@@ -48,6 +50,7 @@ export class RegisterComponent implements OnInit {
       id: 301928394,
       email: 'yanivos123@gmail.com',
       password: '123456',
+      verifyPassword: '123456',
     });
   }
   dummyData2() {

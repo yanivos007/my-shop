@@ -6,10 +6,6 @@ let cartSchema = new Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "Users",
   },
-  // userName: {
-  //   type: mongoose.Schema.Types.ObjectId.userName,
-  //   ref: "Users",
-  // },
 
   products: [
     {

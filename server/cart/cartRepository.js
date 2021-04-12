@@ -1,8 +1,8 @@
 const ICart = require("./cartSchema");
 
-exports.getCart = async () => {
+exports.getCart = async (userId) => {
   //findAll
-  const carts = await ICart.find();
+  const carts = await ICart.find(userId);
   return carts;
 };
 exports.cartById = async (id) => {

@@ -11,6 +11,7 @@ import {
   FormControl,
 } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { first } from 'rxjs/operators';
 
 @Component({
   selector: 'app-login',
@@ -20,6 +21,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
   user: IUser[] = [];
+  returnUrl: string | undefined;
+  // loading: false;
   loginForm = new FormGroup({
     email: new FormControl(null, Validators.required),
     password: new FormControl(null, Validators.required),
@@ -27,13 +30,18 @@ export class LoginComponent implements OnInit {
   loggedIn = false;
 
   constructor(
-    private loginService: LoginServiceService,
+    private route: ActivatedRoute,
+    // private loginService: LoginServiceService,
     private router: Router,
     private authenticationService: AuthenticationService
-  ) {}
+  ) {
+    if (this.authenticationService.currentUser$) {
+      this.router.navigate(['/']);
+    }
+  }
 
-  ngOnInit(): void {
-    // this.loginService.getUsers().subscribe((u) => (this.user = u));
+  ngOnInit() {
+    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
   }
   get f() {
     return this.loginForm.controls;
@@ -43,8 +51,16 @@ export class LoginComponent implements OnInit {
     if (this.loginForm.invalid) {
       return;
     } else {
-      this.loggedIn = true;
-      // this.authenticationService.login(email, password);
+      // this.loggedIn = true;
+      this.authenticationService.login(
+        this.f.email.value,
+        this.f.password.value
+      ).pipe(first())
+      .subscribe(
+        data => {
+          this.router.navigate([this.returnUrl]);
+        },
+      )
       console.log('on submit');
       localStorage.setItem('submitted', 'true');
     }
