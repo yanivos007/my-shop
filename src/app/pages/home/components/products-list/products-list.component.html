@@ -5,16 +5,21 @@
     <button type="button" (click)="showCards()">קלפים</button>
     <button type="button" (click)="showFavorites()">מועדפים</button>
   </div>
-  <div class="container" *ngFor="let i = index; let p; of: products$ | async">
+  <div class="container" *ngFor="let product of products$ | async; index as i">
     <div class="card-body p-4">
-      <h1 class="card-body bg-light text-center">{{ p.name }}</h1>
-      <h3>{{ p.categoryName }}</h3>
+      <h1 class="card-body bg-light text-center">{{ product.name }}</h1>
+      <h3>{{ product.categoryName }}</h3>
       <div>
-        <img src="{{ p.imageUrl }}" class="img-fluid d-block mx-auto mb-3" />
+        <img
+          src="{{ product.imageUrl }}"
+          class="img-fluid d-block mx-auto mb-3"
+        />
       </div>
-      <p class="medium text-muted font-italic">{{ p.description }}</p>
-      <h3>₪ {{ p.price }}</h3>
-      <button (click)="AddToCart()" id="{{ p._id }}">פרטים נוספים וקניה</button>
+      <p class="medium text-muted font-italic">{{ product.description }}</p>
+      <h3>₪ {{ product.price }}</h3>
+      <button (click)="AddToCart(product)" id="{{ product._id }}">
+        פרטים נוספים וקניה
+      </button>
     </div>
   </div>
 </div>

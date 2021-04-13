@@ -1,5 +1,5 @@
 import { HomeService } from './../../pages/home/home.service';
-import {  Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { ICart, IProduct } from './../../interfaces';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -9,36 +9,75 @@ import { Injectable } from '@angular/core';
 })
 export class CartService {
   products$: Observable<IProduct[]> = this.HomeService.getProducts();
-  // products$ = new BehaviorSubject<IProduct>([]);
-  constructor(private http: HttpClient, private HomeService: HomeService) {}
+  cart$ = new BehaviorSubject<ICart | null>(null);
+
+  newCart  =  JSON.stringify({
+    _id: '',
+    userId: '',
+    products: [],
+    modifiedOn: new Date()
+  }) ;
+
+  constructor(private http: HttpClient, private HomeService: HomeService) {
+
+    let cart: ICart = JSON.parse(localStorage.getItem('cart') || this.newCart );
+    this.cart$.next(cart);
+
+  }
 
   getCart(): Observable<ICart[]> {
     return this.http.get<ICart[]>('http://localhost:8080/api/cart');
   }
+
   AddCart(cart: ICart): Observable<ICart[]> {
     return this.http.post<any>('http://localhost:8080/api/cart/add', cart);
   }
+
   addToCart(product: IProduct) {
-    // this.items.push(product);
-    let products: IProduct[] = JSON.parse(
-      localStorage.getItem('product') || '[]'
+    let cart: ICart = JSON.parse(localStorage.getItem('cart') || this.newCart);
+    let filteredProducts = cart.products.find(
+      (p) => p.product._id === product._id
     );
-    products.push(product);
-    localStorage.setItem('product', JSON.stringify(products));
+    if (filteredProducts) {
+      filteredProducts.quantity++;
+    }
+    if (!filteredProducts) {
+      cart.products.push({
+        product,
+        quantity: 1,
+      });
+    }
 
-    // this.products$.next(products);
+    console.log(cart)
+    localStorage.setItem('cart', JSON.stringify(cart));
+    this.cart$.next(cart);
   }
-  removeFromCart(name: string) {
-    let products: IProduct[] = JSON.parse(
-      localStorage.getItem('product') || '[]'
+
+  removeFromCart(product: IProduct) {
+    let cart: ICart = JSON.parse(localStorage.getItem('cart') || this.newCart);
+    let index = cart.products.findIndex((p) => p.product._id === product._id);
+    if (index > -1) {
+      cart.products.splice(index, 1);
+    }
+    localStorage.setItem('cart', JSON.stringify(cart));
+    this.cart$.next(cart);
+
+  }
+  decrece(product: IProduct) {
+    let cart: ICart = JSON.parse(localStorage.getItem('cart') || this.newCart);
+    let filteredProducts = cart.products.find(
+      (p) => p.product._id === product._id
     );
-    let i = products.findIndex((p) => p.name.trim() === name.trim());
-    products.splice(i, 1);
-    localStorage.setItem('product', JSON.stringify(products));
-  }
-  decrece() {}
+    if (filteredProducts) {
+      filteredProducts.quantity--;
+      if (filteredProducts.quantity < 1) {
+        this.removeFromCart(product);
+      }
+    }
+    localStorage.setItem('cart', JSON.stringify(cart));
+    this.cart$.next(cart);
 
-  // getProductsFromCart(){
-  //   return JSON.parse(localStorage.getItem('product'));
-  // }
+    this.AddCart(cart).subscribe()
+
+  }
 }

@@ -12,26 +12,25 @@ import { CartService } from '../cart.service';
   styleUrls: ['./cart-item.component.css'],
 })
 export class CartItemComponent implements OnInit {
-
   products$: Observable<IProduct[]> = this.HomeService.getProducts();
-  
-  constructor(private route: ActivatedRoute,
-     private service: CartService, 
-     private HomeService: HomeService,
+
+  constructor(
+    private route: ActivatedRoute,
+    public CartService: CartService,
+    private HomeService: HomeService,
     private http: HttpClient
-     ) {}
+  ) {}
 
-  ngOnInit(): void { }
+  ngOnInit(): void {}
 
-  addToCart(product: IProduct ){
-    this.service.addToCart(product);
-    this.products$.subscribe(p=>{
-      p.push(product)
-    })
+  addToCart(product: IProduct) {
+    this.CartService.addToCart(product);
+    this.products$.subscribe((p) => {
+      p.push(product);
+    });
     // window.alert('Your product has been added to the cart!');
   }
-  getCartItem(): Observable<ICart[]>{
+  getCartItem(): Observable<ICart[]> {
     return this.http.get<ICart[]>('localhost:8080/api/cart');
-
   }
 }

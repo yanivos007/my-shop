@@ -14,9 +14,7 @@ export class HomeService {
   getProducts(): Observable<IProduct[]> {
     return this.http.get<IProduct[]>('http://localhost:8080/api/products');
   }
-  getCart(): Observable<ICart[]> {
-    return this.http.get<ICart[]>('http://localhost:8080/api/cart');
-  }
+ 
   getProductById(index: any): Observable<IProduct[]> {
     let id = index;
     return this.http.get<IProduct[]>(

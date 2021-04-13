@@ -1,5 +1,4 @@
 import { CartService } from './../../../../components/cart/cart.service';
-// import { CartService } from './../../../../services/cart.service';
 import { IUser, ICart, IProduct } from './../../../../interfaces';
 import { HttpClient } from '@angular/common/http';
 import { HomeService } from './../../home.service';
@@ -15,12 +14,16 @@ import Swal from 'sweetalert2';
 })
 export class ProductsListComponent implements OnInit {
   products$: Observable<IProduct[]> = this.HomeService.getProducts();
-  cart$: Observable<ICart[]> = this.HomeService.getCart();
-  // @Input products: IProduct[]= []
+  cart$: Observable<ICart[]> = this.CartService.getCart();
+  // product : IProduct;
   // user: IUser[] = [];
   // cart: ICart[] = [];
 
-  constructor(private HomeService: HomeService, public http: HttpClient) {}
+  constructor(
+    private HomeService: HomeService,
+    public http: HttpClient,
+    public CartService: CartService
+  ) {}
 
   ngOnInit(): void {}
 
@@ -36,30 +39,26 @@ export class ProductsListComponent implements OnInit {
   showFavorites() {
     this.products$ = this.HomeService.getFavoritesGames();
   }
-  increment() {
-    // this.CartService.addToCart()
-    console.log('one added');
+  increment(product: IProduct) {
+    this.CartService.addToCart(product);
   }
-  decrement() {
-    console.log('one cancled');
+  decrement(product: IProduct) {
+    this.CartService.decrece(product);
   }
-  AddToCart() {
-    let products = this.products$ = this.HomeService.getProducts();
-    console.log(products);
-    // const newCart = { ...this.user, chosenProduct };
+  AddToCart(product: IProduct) {
     Swal.fire({
       title: 'פרטים נוספים',
       showCancelButton: true,
-      imageUrl: '',
+      imageUrl: product.imageUrl,
       // imageWidth: 400,
       // imageHeight: 200,
       confirmButtonText: '+1',
       cancelButtonText: '-1',
     }).then((result) => {
       if (result.value) {
-        this.increment();
+        this.increment(product);
       } else if (result.dismiss === Swal.DismissReason.cancel) {
-        this.decrement();
+        this.decrement(product);
       }
     });
   }

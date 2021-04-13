@@ -1,42 +1,41 @@
 export interface IUser {
-  email: String;
-  password: String;
-  verifyPassword: String;
-  firstName: String;
-  lastName: String;
-  city: String;
-  adress: String;
-  role: String;
-  id: String;
+  email: string;
+  password: string;
+  verifyPassword: string;
+  firstName: string;
+  lastName: string;
+  city: string;
+  adress: string;
+  role: string;
+  id: string;
 }
 export interface User {
   email: string;
   password: string;
 }
 export interface ICurrentUser {
-  email: String;
-  passWord: String;
+  email: string;
+  passWord: string;
 }
 export interface IProduct {
-  _id: Object;
-  name: String;
-  price: Number;
-  imageUrl: String;
-  categoryName: String;
-  categoryId: Number;
-  description: String;
+  _id: string;
+  name: string;
+  price: number;
+  imageUrl: string;
+  categoryName: string;
+  categoryId: number;
+  description: string;
 }
 export interface IOrder {
-  products: Array<String>;
-  user: Array<String>;
+  products: Array<string>;
+  user: Array<string>;
 }
 export interface ICart {
-  _id: Number;
-  userId: Number;
-  product: {
-    productId: String;
-    quantity: Number;
-    price: Number;
-  };
+  _id: string;
+  userId: string;
+  products: {
+    product: IProduct;
+    quantity: number;
+  }[];
   modifiedOn: Date;
 }

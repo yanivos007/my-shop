@@ -5,14 +5,14 @@
 <div class="cart">
   <div>
     <!-- <app-products></app-products> -->
-    <div >
-      <ul *ngIf="cart$">
+    <div *ngIf="CartService.cart$ | async">
+      <ul>
         <app-cart-item></app-cart-item>
       </ul>
     </div>
-    <span *ngIf="cart$">סכום כולל: {{ totalPrice }}</span>
+    <span>סכום כולל: {{ totalPrice }}</span>
     <br />
-    <button *ngIf="cart$" class="btn btn-primary" (click)="continueToOrder()">
+    <button class="btn btn-primary" (click)="continueToOrder()">
       המשך להזמנה
     </button>
   </div>

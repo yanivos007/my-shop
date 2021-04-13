@@ -1,2 +1,14 @@
-<p>cart-item works!</p>
-<div *ngFor="let i = index; let item; of: products$ | async" class="cart"></div>
+<div *ngIf="CartService.cart$ | async as cart; else noCart">
+  <div *ngFor="let item of cart?.products || []" class="cart">
+    <span>{{ item.product.name }}</span>
+    <img
+      src="{{ item.product.imageUrl }}"
+      class="img-fluid d-block mx-auto mb-3"
+    />
+    <span>{{ item.product.price }}</span>
+  </div>
+</div>
+
+<ng-template #noCart>
+  <div>העגלה ריקה. לחץ על מוצרים כדי להוסיפם לעגלה</div>
+</ng-template>
