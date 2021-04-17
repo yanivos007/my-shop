@@ -1,19 +1,22 @@
 .cart {
-  border: black solid 1px;
-  width: auto;
+  border: 3px double brown;
+  border-radius: 50px;
+  justify-content: center;
+  text-align: center;
+  margin-left: 50px;
+  
+  width: 250px;
   height: auto;
-  overflow: scroll;
-  position: absolute;
 }
 image {
   width: auto;
   height: auto;
 }
 .cartItem {
-  border: blue 2px solid;
   padding: 3px;
   border-radius: 10px;
   justify-content: space-around;
+  /* border: 3px solid black; */
   margin-top: 5px;
 }
 .btn {

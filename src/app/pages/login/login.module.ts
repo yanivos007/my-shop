@@ -24,7 +24,6 @@ const routes: Routes = [
     ComponentsModule,
     FormsModule,
     ReactiveFormsModule,
-    AuthenticationService,
   ],
   exports: [],
   declarations: [LoginComponent],

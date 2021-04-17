@@ -6,17 +6,16 @@ const morgan = require("morgan");
 const mongoose = require("mongoose");
 var cookieParser = require("cookie-parser");
 var session = require("express-session");
-const { urlencoded } = require("body-parser");
 
-app.use(cors());
 app.use(morgan("tiny"));
 app.use(bodyParser.urlencoded({ extended: true }));
-
 app.use(bodyParser.json());
+app.use(cors());
 app.use(cookieParser());
 app.use(
   session({
     secret: "23hnv0vno4t0nvnwg4",
+    name: "uniqueSessionID",
     resave: false,
     saveUninitialized: true,
     cookie: { secure: true, maxAge: 60000 },

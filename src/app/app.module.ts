@@ -20,9 +20,6 @@ import { CommonModule } from '@angular/common';
     ReactiveFormsModule,
     ComponentsModule,
     HomeModule,
-    // AuthenticationService,
-
-    // BrowserAnimationsModule,
   ],
 
   providers: [],

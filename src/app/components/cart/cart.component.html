@@ -1,23 +1,16 @@
-<h1>העגלה שלי</h1>
 <!-- <div class="alert alert-info" *ngIf="cartItems$ === 0 | async">
   no item added yet
 </div> -->
 <div class="cart">
-  <div>
-    <!-- <app-products></app-products> -->
-    <div *ngIf="CartService.cart$ | async">
-      <div class="cartItem">
-        <app-cart-item></app-cart-item>
-      </div>
+  <!-- <app-products></app-products> -->
+  <div class="cartItem" *ngIf="CartService.cart$ | async">
+    <div >
+      <app-cart-item ></app-cart-item>
     </div>
-    <span>סכום כולל: {{ totalPrice }}</span>
-    <br />
-    <button class="btn btn-primary" (click)="continueToOrder()">
-      המשך להזמנה
-    </button>
   </div>
-</div>
-<div>
-  <!-- <h1>products List</h1>
-  <div>*ngFor="let product of products"</div> -->
+  <span>סכום כולל: {{ totalPrice }}</span>
+  <br />
+  <button class="btn btn-primary" (click)="continueToOrder()">
+    המשך להזמנה
+  </button>
 </div>

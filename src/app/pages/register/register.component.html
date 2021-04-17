@@ -1,13 +1,11 @@
 <h1>הרשמה</h1>
 <form [formGroup]="firstStep" *ngIf="!firstStepSubmitted">
-  <div class="form-group">
-    <h3>first step</h3>
-    <!-- {{ registerForm.value | json }} -->
+  <div class="form">
     <label for="id"> תעודת זהות</label>
     <input type="text" formControlName="id" class="form-group" />
     <br />
     <label for="email">אי-מייל</label>
-    <input type="text" formControlName="email" />
+    <input type="text" formControlName="email" class="form-group" />
     <br />
     <label for="password">סיסמא</label>
     <input type="text" formControlName="password" class="form-group" required />
@@ -16,7 +14,11 @@
     <input type="text" formControlName="verifyPassword" class="form-group" />
     <br />
 
-    <button (click)="OnContinue()" [disabled]="firstStep.invalid">
+    <button
+      class="btn btn-primary"
+      (click)="OnContinue()"
+      [disabled]="firstStep.invalid"
+    >
       המשך לשלב הבא
     </button>
     <button (click)="dummyData1()">מילוי אוטומטי</button>

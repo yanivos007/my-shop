@@ -30,21 +30,25 @@ router.post("/register", async (req, res) => {
 router.post("/login", async (req, res) => {
   const { email, password } = req.body;
   const user = await userRepository.usersByEmail(email);
-  console.log(user + "user");
   if (!user) {
     res.status(500).send("cannot find user");
   }
   try {
     const hash = await userRepository.hashPassword(email);
-    console.log("hash" + hash);
     if (await bcrypt.compare(password, hash)) {
-      req.session.email = email;
-      console.log(session);
-      const sessionUser = remove(user, ["password"]);
-      console.log("sessionUser" + sessionUser);
+      req.session.user = user;
+      if (!req.session.user) {
+        res.status(401).send("couldnt find user session");
+      } else {
+        res.status(200).send(user + "welcome aboard");
+        // req.session.email = email;
+        // console.log(session);
+        const sessionUser = remove(user, ["password"]);
+        console.log("sessionUser" + sessionUser);
+        // res.redirect("http://localhost:4200/home");
+      }
     } else {
       res.send("were bad");
-      console.log("were bad");
     }
   } catch {
     res.status(500).send("not getting any user");

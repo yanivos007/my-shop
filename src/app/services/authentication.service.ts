@@ -7,6 +7,7 @@ import { map } from 'rxjs/operators';
 @Injectable({ providedIn: 'root' })
 export  class  AuthenticationService {
   public currentUser$ = new BehaviorSubject<IUser | null>(null);
+  // private loggedIn = JSON.parse(localStorage.getItem('loggedIn') || 'false')
   constructor(private http: HttpClient) {
     let user = localStorage.getItem('currentUser');
     if (user !== null) {
@@ -21,6 +22,7 @@ export  class  AuthenticationService {
         map((user) => {
           // store user details and basic auth credentials in local storage to keep user logged in between page refreshes
           localStorage.setItem('currentUser', JSON.stringify(user));
+         
           this.currentUser$.next(user);
           return user;
         })

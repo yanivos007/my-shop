@@ -1,10 +1,16 @@
+.row {
+  display: flex;
+}
 col {
+  grid-column: 6/12;
+
   width: auto;
   height: auto;
   margin: auto;
   padding: 0%;
 }
-col-md-8 {
+.col-md-8 {
+  grid-column: 3/6;
   width: auto;
   height: auto;
   margin: auto;

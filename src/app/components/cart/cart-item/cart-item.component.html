@@ -1,5 +1,5 @@
-<div *ngIf="CartService.cart$ | async as cart; else noCart">
-  <div class="item" *ngFor="let item of cart?.products || []" class="cart">
+<div class="item" *ngIf="CartService.cart$ | async as cart; else noCart">
+  <div  *ngFor="let item of cart?.products || []" class="cart">
     <span>{{ item.product.name }}</span>
 
     <img
