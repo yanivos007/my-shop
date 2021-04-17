@@ -13,24 +13,26 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./cart.component.css'],
 })
 export class CartComponent implements OnInit {
+  cart = this.CartService.cart$;
   products$: Observable<IProduct[]> = this.HomeService.getProducts();
-  private filteredCartItems: Subject<ICart[]> = new Subject<ICart[]>();
+  // private filteredCartItems: Subject<ICart[]> = new Subject<ICart[]>();
   totalPrice = 0;
 
   constructor(
     private HomeService: HomeService,
     public CartService: CartService,
     public http: HttpClient
-  ) {}
+    
+  ) {
+//     let totalPrice = this.cart.forEach(p => p?.products.quantity * p?.products.price)
+// console.log(totalPrice)
+  }
 
   ngOnInit(): void {
   }
-  public getFilteredBookList(): Observable<ICart[]> {
-    return this.filteredCartItems.asObservable();
-  }
-  public setfilteredCartItems(books: ICart[]): void {
-    this.filteredCartItems.next(books);
-  }
+
+
+  
   continueToOrder() {
     console.log('on continue');
     // const cartName = this.cartItems.map((c) => c.name);

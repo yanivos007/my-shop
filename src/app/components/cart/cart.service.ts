@@ -1,3 +1,4 @@
+import { LoginServiceService } from './../../pages/login/login-service.service';
 import { HomeService } from './../../pages/home/home.service';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { ICart, IProduct } from './../../interfaces';
@@ -11,18 +12,21 @@ export class CartService {
   products$: Observable<IProduct[]> = this.HomeService.getProducts();
   cart$ = new BehaviorSubject<ICart | null>(null);
 
-  newCart  =  JSON.stringify({
+  newCart = JSON.stringify({
     _id: '',
     userId: '',
     products: [],
-    modifiedOn: new Date()
-  }) ;
+    modifiedOn: new Date(),
+  });
 
-  constructor(private http: HttpClient, private HomeService: HomeService) {
-
-    let cart: ICart = JSON.parse(localStorage.getItem('cart') || this.newCart );
+  constructor(
+    private http: HttpClient,
+    private HomeService: HomeService,
+    LoginService: LoginServiceService
+  ) {
+    let cart: ICart = JSON.parse(localStorage.getItem('cart') || this.newCart);
     this.cart$.next(cart);
-
+    this.products$.subscribe();
   }
 
   getCart(): Observable<ICart[]> {
@@ -48,7 +52,7 @@ export class CartService {
       });
     }
 
-    console.log(cart)
+    console.log(cart);
     localStorage.setItem('cart', JSON.stringify(cart));
     this.cart$.next(cart);
   }
@@ -61,7 +65,6 @@ export class CartService {
     }
     localStorage.setItem('cart', JSON.stringify(cart));
     this.cart$.next(cart);
-
   }
   decrece(product: IProduct) {
     let cart: ICart = JSON.parse(localStorage.getItem('cart') || this.newCart);
@@ -77,7 +80,6 @@ export class CartService {
     localStorage.setItem('cart', JSON.stringify(cart));
     this.cart$.next(cart);
 
-    this.AddCart(cart).subscribe()
-
+    this.AddCart(cart).subscribe();
   }
 }

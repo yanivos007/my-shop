@@ -1,11 +1,11 @@
 import { IUser } from './../interfaces';
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { BehaviorSubject } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 @Injectable({ providedIn: 'root' })
-export class AuthenticationService {
+export  class  AuthenticationService {
   public currentUser$ = new BehaviorSubject<IUser | null>(null);
   constructor(private http: HttpClient) {
     let user = localStorage.getItem('currentUser');
@@ -13,10 +13,7 @@ export class AuthenticationService {
       this.currentUser$.next(JSON.parse(user));
     }
   }
-  //   public get currentUserValue(): IUser {
-  //     return this.currentUser$.value;
-  // }
-
+ 
   login(email: string, password: string) {
     return this.http
       .post<any>(`http://localhost:8080/api/users/login`, { email, password })
@@ -31,18 +28,17 @@ export class AuthenticationService {
   }
 
   logout() {
-    // remove user from local storage to log user out
     localStorage.removeItem('currentUser');
     this.currentUser$.next(null);
   }
-  registerUser(user: object): Observable<IUser> {
-    let headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-    });
-    return this.http.post<IUser>(
-      `http://localhost:8080/api/user/register`,
-      user,
-      { headers: headers }
-    );
-  }
+  // registerUser(user: object): Observable<IUser> {
+  //   let headers = new HttpHeaders({
+  //     'Content-Type': 'application/json',
+  //   });
+  //   return this.http.post<IUser>(
+  //     `http://localhost:8080/api/user/register`,
+  //     user,
+  //     { headers: headers }
+  //   );
+  // }
 }

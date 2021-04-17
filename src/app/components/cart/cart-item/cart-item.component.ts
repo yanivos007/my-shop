@@ -4,7 +4,7 @@ import { HomeService } from './../../../pages/home/home.service';
 import { IProduct } from 'src/app/interfaces';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { CartService } from '../cart.service';
 @Component({
   selector: 'app-cart-item',
@@ -13,7 +13,6 @@ import { CartService } from '../cart.service';
 })
 export class CartItemComponent implements OnInit {
   products$: Observable<IProduct[]> = this.HomeService.getProducts();
-
   constructor(
     private route: ActivatedRoute,
     public CartService: CartService,
@@ -27,9 +26,12 @@ export class CartItemComponent implements OnInit {
     this.CartService.addToCart(product);
     this.products$.subscribe((p) => {
       p.push(product);
-    });
-    // window.alert('Your product has been added to the cart!');
-  }
+    })
+  };
+//   getQuantity(cart: ICart){
+// return cart.products.quantity;
+//   }
+
   getCartItem(): Observable<ICart[]> {
     return this.http.get<ICart[]>('localhost:8080/api/cart');
   }

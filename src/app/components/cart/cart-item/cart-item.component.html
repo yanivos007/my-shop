@@ -1,11 +1,13 @@
 <div *ngIf="CartService.cart$ | async as cart; else noCart">
-  <div *ngFor="let item of cart?.products || []" class="cart">
+  <div class="item" *ngFor="let item of cart?.products || []" class="cart">
     <span>{{ item.product.name }}</span>
+
     <img
       src="{{ item.product.imageUrl }}"
       class="img-fluid d-block mx-auto mb-3"
     />
-    <span>{{ item.product.price }}</span>
+    <span> מחיר {{ item.product.price }}</span>
+    <!-- <span> מחיר {{ item.product. }}</span> -->
   </div>
 </div>
 

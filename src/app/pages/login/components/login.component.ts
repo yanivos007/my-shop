@@ -22,7 +22,6 @@ import { first } from 'rxjs/operators';
 export class LoginComponent implements OnInit {
   user: IUser[] = [];
   returnUrl: string | undefined;
-  // loading: false;
   loginForm = new FormGroup({
     email: new FormControl(null, Validators.required),
     password: new FormControl(null, Validators.required),
@@ -31,11 +30,10 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    // private loginService: LoginServiceService,
     private router: Router,
-    private authenticationService: AuthenticationService
+    private auth: AuthenticationService
   ) {
-    if (this.authenticationService.currentUser$) {
+    if (this.auth.currentUser$) {
       this.router.navigate(['/']);
     }
   }
@@ -51,17 +49,18 @@ export class LoginComponent implements OnInit {
     if (this.loginForm.invalid) {
       return;
     } else {
-      // this.loggedIn = true;
-      this.authenticationService.login(
-        this.f.email.value,
-        this.f.password.value
-      ).pipe(first())
-      .subscribe(
-        data => {
-          this.router.navigate([this.returnUrl]);
-        },
-      )
-      console.log('on submit');
+      this.loggedIn = true;
+      this.auth
+        .login(this.f.email.value, this.f.password.value)
+        .pipe(first())
+        .subscribe(
+          (data) => {
+            this.router.navigate([this.returnUrl]);
+          },
+          (error) => {
+            console.log({ error: 'something went wrong' });
+          }
+        );
       localStorage.setItem('submitted', 'true');
     }
   }

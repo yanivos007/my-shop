@@ -1,15 +1,20 @@
 <nav>
   <div>
-    <h1>my shop</h1>
-    <ul>
-        <li><a routerLink="/home"> Home</a></li>
-        <li><a routerLink="/login"> Login</a></li>
-        <li><a routerLink="/register"> Register</a></li>
-        <li><a routerLink="/admin"> Admin</a></li>
+    <h1 class="header">
+      {{ title }}
+      <h2>everything you looking for is here!</h2>
+    </h1>
+    <button class="logout-btn" *ngIf="currentUser" (click)="logout()">
+      logout
+    </button>
+
+    <ul class="navLink">
+      <li><a routerLink="/home"> Home</a></li>
+      <li *ngIf="!currentUser"><a routerLink="/login"> Login</a></li>
+      <li *ngIf="!currentUser"><a routerLink="/register"> Register</a></li>
+      <li *ngIf="currentUser === 'admin'"><a routerLink="/admin"> Admin</a></li>
     </ul>
   </div>
- 
-  <br>
-  <button (click)="logout()"> logout</button>
+
   <router-outlet></router-outlet>
 </nav>

@@ -1,13 +1,13 @@
+<div class="categories">
+  <button type="button" (click)="getStrategyGames()">אסטרטגיה</button>
+  <button type="button" (click)="showFamily()">לכל המשפחה</button>
+  <button type="button" (click)="showCards()">קלפים</button>
+  <button type="button" (click)="showFavorites()">מועדפים</button>
+</div>
 <div class="row">
-  <div class="categories">
-    <button type="button" (click)="getStrategyGames()">אסטרטגיה</button>
-    <button type="button" (click)="showFamily()">לכל המשפחה</button>
-    <button type="button" (click)="showCards()">קלפים</button>
-    <button type="button" (click)="showFavorites()">מועדפים</button>
-  </div>
   <div class="container" *ngFor="let product of products$ | async; index as i">
-    <div class="card-body p-4">
-      <h1 class="card-body bg-light text-center">{{ product.name }}</h1>
+    <div class="card-body">
+      <h1>{{ product.name }}</h1>
       <h3>{{ product.categoryName }}</h3>
       <div>
         <img

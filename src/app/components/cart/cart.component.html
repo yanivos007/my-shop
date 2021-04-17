@@ -6,9 +6,9 @@
   <div>
     <!-- <app-products></app-products> -->
     <div *ngIf="CartService.cart$ | async">
-      <ul>
+      <div class="cartItem">
         <app-cart-item></app-cart-item>
-      </ul>
+      </div>
     </div>
     <span>סכום כולל: {{ totalPrice }}</span>
     <br />

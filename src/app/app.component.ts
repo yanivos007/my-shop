@@ -1,3 +1,8 @@
+import { Router } from '@angular/router';
+import { AuthenticationService } from './services/authentication.service';
+// import { IUser } from './interfaces';
+// import { Observable, BehaviorSubject } from 'rxjs';
+import { LoginServiceService } from './pages/login/login-service.service';
 import { MainService } from './services/mainService';
 import { Component } from '@angular/core';
 
@@ -7,13 +12,20 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  title = 'my-shop';
-  constructor(public service: MainService) {
+  title = 'BoardGames Kingdom';
+  // public currentUser$ = new BehaviorSubject<IUser | null>(null);
+  currentUser: any;
 
- this.service.getUsers();
-    this.service.getCarts();
+  constructor(
+    // public service: MainService,
+    // public loginService: LoginServiceService,
+    public auth: AuthenticationService,
+    private router: Router
+  ) {
+    this.auth.currentUser$.subscribe((x) => (this.currentUser = x));
   }
   logout() {
-    console.log('logout Button');
+    this.auth.logout();
+    this.router.navigate(['/login']);
   }
 }

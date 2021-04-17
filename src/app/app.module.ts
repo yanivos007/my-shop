@@ -1,3 +1,4 @@
+import { HomeModule } from './pages/home/home.module';
 import { ComponentsModule } from 'src/app/components/components.module';
 import { AuthenticationService } from './services/authentication.service';
 import { BrowserModule } from '@angular/platform-browser';
@@ -18,6 +19,7 @@ import { CommonModule } from '@angular/common';
     CommonModule,
     ReactiveFormsModule,
     ComponentsModule,
+    HomeModule,
     // AuthenticationService,
 
     // BrowserAnimationsModule,

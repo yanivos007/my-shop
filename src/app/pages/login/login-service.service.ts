@@ -9,10 +9,10 @@ import { IUser } from './../../interfaces';
 export class LoginServiceService {
   constructor(private http: HttpClient) {}
 
-  getUsers(): Observable<IUser[]> {
+ public getUsers(): Observable<IUser[]> {
     return this.http.get<IUser[]>('http://localhost:8080/api/users');
   }
-  register(user: IUser): Observable<IUser[]> {
+ public register(user: IUser): Observable<IUser[]> {
     return this.http.post<any>(
       `http://localhost:8080/api/users/register`,
       user

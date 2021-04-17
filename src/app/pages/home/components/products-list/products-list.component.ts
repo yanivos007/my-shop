@@ -50,16 +50,19 @@ export class ProductsListComponent implements OnInit {
       title: 'פרטים נוספים',
       showCancelButton: true,
       imageUrl: product.imageUrl,
+      text: product.description,
       // imageWidth: 400,
       // imageHeight: 200,
       confirmButtonText: '+1',
-      cancelButtonText: '-1',
+      // cancelButtonText: '-1',
     }).then((result) => {
-      if (result.value) {
+      if (result.isConfirmed) {
+        Swal.fire('מוצר הוסף לעגלה');
         this.increment(product);
-      } else if (result.dismiss === Swal.DismissReason.cancel) {
-        this.decrement(product);
       }
+      // else if (result.dismiss === Swal.DismissReason.cancel) {
+      //   this.decrement(product);
+      // }
     });
   }
 }
