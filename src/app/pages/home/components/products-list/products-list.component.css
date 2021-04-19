@@ -11,9 +11,20 @@ img {
   margin-bottom: 50px;
 }
 .container {
-  background-color: silver;
+  background-color: darkslategray;
 }
-
+.card-body {
+  max-height: 450px;
+  overflow: hidden;
+  padding: 1.25rem;
+  text-align: center;
+  border-radius: 15px;
+}
+.btn {
+  position: static;
+  bottom: 0px;
+  left: auto;
+}
 .row {
   display: grid;
   justify-content: space-around;
@@ -30,21 +41,21 @@ img {
 }
 .categories {
   color: #f2f2f2;
+  background-color: darkslateblue;
   text-align: center;
   padding: 14px 16px;
+  border-radius: 15px;
+  font-size: 45px;
   text-decoration: none;
   font-size: 17px;
 }
-
+.cat-btn {
+  font-size: 30px;
+  border-radius: 15px;
+  margin-left: 10px;
+}
 .card-img-actions {
   position: relative;
-}
-
-.card-body {
-  -ms-flex: 1 1 auto;
-  flex: 1 1 auto;
-  padding: 1.25rem;
-  text-align: center;
 }
 
 .card-img {
@@ -53,4 +64,10 @@ img {
 .card-body {
   font-style: normal black;
   text-emphasis-color: black;
+}
+h1 {
+  font-weight: 800;
+  border: dotted 3px black;
+  letter-spacing: 4px;
+  border-radius: 5px;
 }

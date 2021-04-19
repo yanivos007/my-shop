@@ -1,9 +1,5 @@
 import { Router } from '@angular/router';
 import { AuthenticationService } from './services/authentication.service';
-// import { IUser } from './interfaces';
-// import { Observable, BehaviorSubject } from 'rxjs';
-import { LoginServiceService } from './pages/login/login-service.service';
-import { MainService } from './services/mainService';
 import { Component } from '@angular/core';
 
 @Component({

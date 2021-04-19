@@ -1,5 +1,5 @@
 const express = require("express");
-var cookieSession = require("cookie-session");
+// var cookieSession = require("cookie-session");
 
 const router = express.Router();
 const IUser = require("./usersSchema");
@@ -7,6 +7,13 @@ const userRepository = require("./usersRepository");
 const bcrypt = require("bcrypt");
 const session = require("express-session");
 
+// var sessionChecker = (req,res, next)=> {
+//   if(req.session.password && req.session.email ){
+//     res.redirect('/home');
+//   }else{
+//     next()
+//   }
+// }
 router.post("/register", async (req, res) => {
   try {
     const hash = bcrypt.hashSync(req.body.password, 10);
@@ -20,6 +27,8 @@ router.post("/register", async (req, res) => {
       role: req.body.role,
     });
     const newUser = await user.save();
+    req.session.user = user;
+
     delete newUser.password;
     res.json(newUser);
   } catch (err) {
@@ -30,6 +39,7 @@ router.post("/register", async (req, res) => {
 router.post("/login", async (req, res) => {
   const { email, password } = req.body;
   const user = await userRepository.usersByEmail(email);
+  console.log(user);
   if (!user) {
     res.status(500).send("cannot find user");
   }
@@ -40,12 +50,9 @@ router.post("/login", async (req, res) => {
       if (!req.session.user) {
         res.status(401).send("couldnt find user session");
       } else {
-        res.status(200).send(user + "welcome aboard");
-        // req.session.email = email;
-        // console.log(session);
+      
+        res.status(200).send(user);
         const sessionUser = remove(user, ["password"]);
-        console.log("sessionUser" + sessionUser);
-        // res.redirect("http://localhost:4200/home");
       }
     } else {
       res.send("were bad");

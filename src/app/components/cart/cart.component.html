@@ -1,16 +1,10 @@
-<!-- <div class="alert alert-info" *ngIf="cartItems$ === 0 | async">
-  no item added yet
-</div> -->
-<div class="cart">
-  <!-- <app-products></app-products> -->
-  <div class="cartItem" *ngIf="CartService.cart$ | async">
-    <div >
-      <app-cart-item ></app-cart-item>
-    </div>
+<div class="megaCart">
+  <div *ngIf="CartService.cart$ | async">
+    <app-cart-item></app-cart-item>
+    <span>סכום כולל: {{ CartService.totalPrice$ | async }}</span>
+    <br />
+    <button class="btn btn-primary" (click)="continueToOrder()">
+      המשך להזמנה
+    </button>
   </div>
-  <span>סכום כולל: {{ totalPrice }}</span>
-  <br />
-  <button class="btn btn-primary" (click)="continueToOrder()">
-    המשך להזמנה
-  </button>
 </div>

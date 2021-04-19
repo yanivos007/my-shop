@@ -34,7 +34,7 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+    // this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
   }
   get f() {
     return this.loginForm.controls;
@@ -48,19 +48,15 @@ export class LoginComponent implements OnInit {
     this.submitted = true;
 
     console.log(this.loggedIn);
-    this.auth
-      .login(this.f.email.value, this.f.password.value)
-      .pipe()
-      .subscribe(
-        (data) => {
-          console.log(this.f.email.value);
-          console.log(data);
-          this.router.navigate(['http://localhost:4200/home']);
-        },
-        (error) => {
-          console.log({ error: 'something went wrong' });
+    this.auth.login(this.f.email.value, this.f.password.value).subscribe(
+      (data) => {
+        if(data == null){
+          return;
         }
-      );
-    localStorage.setItem('submitted', 'true');
+        console.log(this.f.email.value);
+        console.log(data);
+        this.router.navigate(['/home']);
+      },
+    );
   }
 }

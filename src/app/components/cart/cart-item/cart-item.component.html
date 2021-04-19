@@ -1,13 +1,15 @@
-<div class="item" *ngIf="CartService.cart$ | async as cart; else noCart">
-  <div  *ngFor="let item of cart?.products || []" class="cart">
-    <span>{{ item.product.name }}</span>
-
-    <img
-      src="{{ item.product.imageUrl }}"
-      class="img-fluid d-block mx-auto mb-3"
-    />
-    <span> מחיר {{ item.product.price }}</span>
-    <!-- <span> מחיר {{ item.product. }}</span> -->
+<div *ngIf="CartService.cart$ | async as cart; else noCart">
+  <div *ngFor="let item of cart?.products || []" class="cart">
+    <div class="item">
+      <h1>{{ item.product.name }}</h1>
+      <img src="{{ item.product.imageUrl }}" class="img-fluid" />
+      <h3>מחיר {{ item.product.price }}</h3>
+      <h3>כמות {{ item.quantity }}</h3>
+      <br />
+      <button class="btn btn-danger" (click)="deleteFromCart(item.product)">
+        הסר מהעגלה
+      </button>
+    </div>
   </div>
 </div>
 

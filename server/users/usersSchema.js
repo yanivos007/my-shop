@@ -34,31 +34,7 @@ const usersSchema = new Schema({
     enum: ["user", "admin"],
     default: "user",
   },
-  // sessions: [
-  //   {
-  //     token: {
-  //       require: true,
-  //       type: String,
-  //     },
-  //     expireDate: {
-  //       type: Number,
-  //       require: true,
-  //     },
-  //   },
-  // ],
-  // cart: {
-  //   items: [
-  //     {
-  //       productId: {
-  //         type: Schema.Types.ObjectId,
-  //         // referred to Product Model
-  //         ref: "Product",
-  //         required: true
-  //       },
-  //       quantity: { type: Number, required: true }
-  //     }
-  //   ]
-  // }
+  
 });
 
 const Users = mongoose.model("Users", usersSchema);

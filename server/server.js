@@ -6,6 +6,7 @@ const morgan = require("morgan");
 const mongoose = require("mongoose");
 var cookieParser = require("cookie-parser");
 var session = require("express-session");
+const { isTypeFlagSet } = require("tslint");
 
 app.use(morgan("tiny"));
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -15,9 +16,9 @@ app.use(cookieParser());
 app.use(
   session({
     secret: "23hnv0vno4t0nvnwg4",
-    name: "uniqueSessionID",
+    key: "uniqueSessionID",
     resave: false,
-    saveUninitialized: true,
+    saveUninitialized: false,
     cookie: { secure: true, maxAge: 60000 },
   })
 );

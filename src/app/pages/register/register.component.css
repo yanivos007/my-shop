@@ -9,6 +9,9 @@
 input {
   border: 3px solid black;
 }
+option {
+  border: 3px solid black;
+}
 h1 {
   font-weight: 900;
   font-size: 70px;

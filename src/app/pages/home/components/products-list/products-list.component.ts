@@ -14,7 +14,7 @@ import Swal from 'sweetalert2';
 })
 export class ProductsListComponent implements OnInit {
   products$: Observable<IProduct[]> = this.HomeService.getProducts();
-  cart$: Observable<ICart[]> = this.CartService.getCart();
+  cart$: Observable<ICart> = this.CartService.getCart();
   // product : IProduct;
   // user: IUser[] = [];
   // cart: ICart[] = [];

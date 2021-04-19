@@ -10,9 +10,12 @@
 
     <ul class="navLink">
       <li><a routerLink="/home"> Home</a></li>
+      <li><a routerLink="/about"> About</a></li>
       <li *ngIf="!currentUser"><a routerLink="/login"> Login</a></li>
       <li *ngIf="!currentUser"><a routerLink="/register"> Register</a></li>
-      <li *ngIf="currentUser === 'admin'"><a routerLink="/admin"> Admin</a></li>
+      <li *ngIf="currentUser?.role === 'admin'">
+        <a routerLink="/admin"> Admin</a>
+      </li>
     </ul>
   </div>
 

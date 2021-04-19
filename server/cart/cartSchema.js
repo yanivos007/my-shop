@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
+const { productSchema } = require("../products/productSchema");
 
 let cartSchema = new Schema({
   userId: {
@@ -9,16 +10,13 @@ let cartSchema = new Schema({
 
   products: [
     {
-      productId: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "products",
+      product: {
+        type: productSchema,
       },
       quantity: {
         type: Number,
         min: [1, "Quantity can not be less then 1."],
       },
-      price: Number,
-      totalPrice: Number,
     },
   ],
   modifiedOn: {

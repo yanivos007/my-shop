@@ -8,10 +8,19 @@
     <input type="text" formControlName="email" class="form-group" />
     <br />
     <label for="password">סיסמא</label>
-    <input type="text" formControlName="password" class="form-group" required />
+    <input
+      type="password"
+      formControlName="password"
+      class="form-group"
+      required
+    />
     <br />
     <label for="Verify Password">אימות סיסמא</label>
-    <input type="text" formControlName="verifyPassword" class="form-group" />
+    <input
+      type="password"
+      formControlName="verifyPassword"
+      class="form-group"
+    />
     <br />
 
     <button
@@ -28,11 +37,11 @@
 </form>
 <div *ngIf="firstStepSubmitted">
   <form
+    class="form"
     [formGroup]="secondStep"
     (ngSubmit)="onSubmit()"
     ng-disabled="firstStepSubmitted"
   >
-    <h3>second step</h3>
     <label for="firstName"> שם פרטי </label>
     <input type="text" formControlName="firstName" required />
     <br />
@@ -40,14 +49,14 @@
     <input type="text" formControlName="lastName" required />
     <br />
     <label for="city"> עיר </label>
-    <select name="city" id="city" class="custom-select" formControlName="city">
+    <select name="city" id="city" formControlName="city">
       <option value="haifa">חיפה</option>
       <option value="telAviv">תל אביב</option>
       <option value="Jerusalem">ירושלים</option>
       <option value="nazeret">נצרת</option>
       <option value="beerSheva">באר שבע</option>
       <option value="ramatGan">רמת גן</option>
-      <option value="RishonLezion">ראשון לציון</option>
+      <option  value="RishonLezion">ראשון לציון</option>
       <option value="kiryatShmona">קריית שמונה</option>
       <option value="eilat">אילת</option>
       <option value="yesodAmahala">יסוד המעלה</option>

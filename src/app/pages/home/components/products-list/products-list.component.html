@@ -1,14 +1,14 @@
 <div class="categories">
-  <button type="button" (click)="getStrategyGames()">אסטרטגיה</button>
-  <button type="button" (click)="showFamily()">לכל המשפחה</button>
-  <button type="button" (click)="showCards()">קלפים</button>
-  <button type="button" (click)="showFavorites()">מועדפים</button>
+  <button class="cat-btn" type="button" (click)="getStrategyGames()">אסטרטגיה</button>
+  <button class="cat-btn" type="button" (click)="showFamily()">לכל המשפחה</button>
+  <button class="cat-btn" type="button" (click)="showCards()">קלפים</button>
+  <button class="cat-btn" type="button" (click)="showFavorites()">מועדפים</button>
 </div>
 <div class="row">
   <div class="container" *ngFor="let product of products$ | async; index as i">
     <div class="card-body">
       <h1>{{ product.name }}</h1>
-      <h3>{{ product.categoryName }}</h3>
+      <h4>{{ product.categoryName }}</h4>
       <div>
         <img
           src="{{ product.imageUrl }}"
@@ -17,9 +17,9 @@
       </div>
       <p class="medium text-muted font-italic">{{ product.description }}</p>
       <h3>₪ {{ product.price }}</h3>
-      <button (click)="AddToCart(product)" id="{{ product._id }}">
-        פרטים נוספים וקניה
-      </button>
     </div>
+    <button class="btn btn-primary" (click)="AddToCart(product)" id="{{ product._id }}">
+      פרטים נוספים וקניה
+    </button>
   </div>
 </div>

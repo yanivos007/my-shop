@@ -7,7 +7,7 @@ export interface IUser {
   city: string;
   adress: string;
   role: string;
-  id: string;
+  _id: string;
 }
 export interface User {
   email: string;

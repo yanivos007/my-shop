@@ -10,9 +10,9 @@ exports.cartById = async (id) => {
   const cart = await ICart.findById(id);
   return cart;
 };
-exports.createCart = async (payload) => {
+exports.createCart = async (cart) => {
   //new product
-  const newCart = await ICart.create(payload);
+  const newCart = await ICart.create(cart);
   return newCart;
 };
 exports.removeCart = async (id) => {
@@ -20,3 +20,9 @@ exports.removeCart = async (id) => {
   const carts = await ICart.findByIdAndRemove(id);
   return carts;
 };
+exports.update = async (cart) => {
+  const carts = await ICart.findByIdAndUpdate(cart._id, cart);
+
+  return carts;
+};
+

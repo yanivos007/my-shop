@@ -1,0 +1,13 @@
+h1,
+h2,
+h3 {
+  display: flex;
+  position: relative;
+  right: auto;
+  text-align: center;
+  justify-content: center;
+}
+h2,
+h3 {
+  border: double 3px black;
+}

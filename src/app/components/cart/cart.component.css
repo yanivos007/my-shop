@@ -1,18 +1,22 @@
-.cart {
+.megaCart {
+  width: 300px;
   border: 3px double brown;
   border-radius: 50px;
-  justify-content: center;
   text-align: center;
+  justify-content: center;
+}
+.cart {
+  /* border: 5px solid black;
   margin-left: 50px;
-  
   width: 250px;
-  height: auto;
+  height: auto; */
 }
 image {
   width: auto;
   height: auto;
 }
 .cartItem {
+  border: brown 1px;
   padding: 3px;
   border-radius: 10px;
   justify-content: space-around;

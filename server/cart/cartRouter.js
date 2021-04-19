@@ -46,6 +46,19 @@ router.get("/", async (req, res) => {
   }
 });
 
-router.get("/getById", async (req, res) => {});
+router.post('/add', async(req, res)=>{
+  try {
+    let cart = await cartRepository.getCart(userId);
+
+    if(!cart){
+     cart = await cartRepository.createCart(req.body);
+    }else{
+      cart = await cartRepository.update(req.body)
+    }
+    res.status(200).json(cart);
+  } catch (err) {
+    res.status(500).send(err);
+  }
+})
 
 module.exports = router;
